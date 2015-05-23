@@ -62,7 +62,7 @@ describe('multiple blocks', function() {
   });
 });
 
-describe('mdx', function() {
+describe('stay closing tags', function() {
   push('file.js',
 `/*
  * Description here.
@@ -72,16 +72,19 @@ describe('mdx', function() {
        */ }`);
 
   it('has locations', function () {
-    console.log(this.out);
     expect(this.out[0].location.doc).eql({ start: 1, end: 3 });
     expect(this.out[0].location.code).eql({ start: 5 });
   });
-    
-  it('has prelude', function () {
-    expect(this.out[0].prelude).eql("function hello() {");
-  });
+});
 
-  it('has raw', function () {
-    expect(this.out[0].raw).eql("Description here.\n");
+describe('explicit', function() {
+  push('file.js',
+`/**
+ * Description here.
+ */
+ function hello() {}`);
+
+  it('sets the explicit flag', function () {
+    expect(this.out[0].explicit).eql(true);
   });
 });
