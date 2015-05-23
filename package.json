@@ -1,0 +1,15 @@
+{
+  "name": "mdextract2",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
+  "license": "MIT",
+  "dependencies": {
+    "read-input": "^0.2.0",
+    "yargs": "^3.9.1"
+  }
+}

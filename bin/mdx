@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+var read = require('read-input');
+var args = process.argv.slice(2);
+
+read(args._).then(function (res) {
+  if (res.error) throw error;
+  console.log(res.data);
+}).catch(function (err) {
+  throw err;
+});
