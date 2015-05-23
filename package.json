@@ -13,6 +13,9 @@
     "yargs": "^3.9.1"
   },
   "devDependencies": {
+    "babelify": "^6.1.1",
+    "browserify": "^10.2.1",
+    "browserify-incremental": "^3.0.0",
     "chai": "^2.3.0",
     "mocha": "^2.2.5"
   }
