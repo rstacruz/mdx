@@ -1,4 +1,5 @@
 var push = require('./helpers/push');
+var Mdx = require('../index');
 
 describe('mdx', function() {
   push('file.js',
@@ -86,5 +87,22 @@ describe('explicit', function() {
 
   it('sets the explicit flag', function () {
     expect(this.out[0].explicit).eql(true);
+  });
+});
+
+describe('detectLanguage', function () {
+  it('works for .js', function () {
+    var lang = Mdx.detectLanguage('file.js');
+    expect(lang.name).eq('Javascript');
+  });
+
+  it('works for .es6', function () {
+    var lang = Mdx.detectLanguage('file.es6');
+    expect(lang.name).eq('Javascript');
+  });
+
+  it('returns nothing when it doesnt know', function () {
+    var lang = Mdx.detectLanguage('file.txt');
+    expect(lang).eq(undefined);
   });
 });
