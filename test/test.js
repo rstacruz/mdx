@@ -90,6 +90,17 @@ describe('explicit', function() {
   });
 });
 
+describe('short blocks', function() {
+  push('file.js',
+`/* jshint: true */
+function hello() {}`);
+
+  it('is empty', function () {
+    expect(this.out).eql([]);
+  });
+
+});
+
 describe('detectLanguage', function () {
   it('works for .js', function () {
     var lang = Mdx.detectLanguage('file.js');
