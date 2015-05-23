@@ -1,11 +1,86 @@
 #!/usr/bin/env node
 
-var read = require('read-input');
-var args = process.argv.slice(2);
+if (!process.parent) run();
 
-read(args._).then(function (res) {
-  if (res.error) throw error;
-  console.log(res.data);
-}).catch(function (err) {
-  throw err;
+var Matcher = require('../lib/matcher');
+
+var rules = new Matcher({
+  string: '.*?',
+  doc: '\\s*%{docprefix}\\s?%{doc:string}%{eol}',
+  docprefix: '\\*',
 });
+
+function Extractor() {
+  this.output = [];
+  this.blocks = [];
+}
+
+Extractor.prototype.push = function (fname, data) {
+  return '!' + data;
+
+};
+
+Extractor.prototype.toString = function () {
+  return this.output.join("\n");
+};
+
+function Context (src) {
+  this.src = src;
+  this.block = undefined;
+  this.blocks = [];
+}
+
+Context.prototype.flush = function () {
+  if (this.block) {
+    this.blocks.push(this.block);
+  }
+
+  this.block = {};
+
+};
+
+Context.prototype.process = function () {
+  var ctx = this;
+  ctx.flush();
+
+  eachLine(ctx.src, function (line, i) {
+    rules.switch(line, {
+      doc: function (m) {
+      },
+      else: function () {
+      }
+    });
+  });
+};
+
+/**
+ * Runs.
+ */
+
+function run() {
+  var read = require('read-input');
+  var argv = require('yargs').argv;
+  var ex = new Extractor();
+
+  read(argv._).then(function (res) {
+    // non-fatal errors
+    if (res.error) console.warn(res.error.message);
+    
+    res.files.forEach(function (f) {
+      ex.push(f.name, f.data);
+    });
+
+    console.log(ex.toString());
+
+  }).catch(function (err) {
+    throw err;
+  });
+}
+
+/*
+ * Helpers
+ */
+
+function eachLine (src, fn) {
+  src.split('\n').forEach(fn);
+}

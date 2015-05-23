@@ -9,7 +9,7 @@
   "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
   "license": "MIT",
   "dependencies": {
-    "read-input": "^0.2.0",
+    "read-input": "^0.3.0",
     "yargs": "^3.9.1"
   }
 }
