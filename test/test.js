@@ -117,3 +117,72 @@ describe('detectLanguage', function () {
     expect(lang).eq(undefined);
   });
 });
+
+describe('js functions', function() {
+  push('file.js',
+`/**
+ * Description here.
+ */
+function hello() {
+}`);
+
+  it('has type', function () {
+    expect(this.out[0].type).eql('function');
+  });
+
+  it('has title', function () {
+    expect(this.out[0].title).eql('hello');
+  });
+});
+
+describe('js function with args', function() {
+  push('file.js',
+`/**
+ * Description here.
+ */
+function hello(x, y) {
+}`);
+
+  it('has type', function () {
+    expect(this.out[0].type).eql('function');
+  });
+
+  it('has title', function () {
+    expect(this.out[0].title).eql('hello');
+  });
+});
+
+describe('js classes', function() {
+  push('file.js',
+`/**
+ * Description here.
+ */
+class Extract {
+}`);
+
+  it('has type', function () {
+    expect(this.out[0].type).eql('class');
+  });
+
+  it('has title', function () {
+    expect(this.out[0].title).eql('Extract');
+  });
+});
+
+describe('js subclasses', function() {
+  push('file.js',
+`/**
+ * Description here.
+ */
+class Extract extends Base {
+}`);
+
+  it('has type', function () {
+    expect(this.out[0].type).eql('class');
+  });
+
+  it('has title', function () {
+    expect(this.out[0].title).eql('Extract');
+  });
+});
+
