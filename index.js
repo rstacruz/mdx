@@ -25,7 +25,7 @@ function Extractor() {
 }
 
 Extractor.prototype.push = function (fname, src) {
-  var c = new Context(src);
+  var c = new Context(fname, src);
   c.process();
 
   this.blocks = this.blocks.concat(c.blocks);
@@ -39,7 +39,7 @@ Extractor.prototype.toJson = function () {
  * (Private) A document parsing context.
  */
 
-function Context (src) {
+function Context (fname, src) {
   this.src = src;
   this.block = undefined;
   this.blocks = [];
@@ -90,8 +90,10 @@ Context.prototype.process = function () {
         ctx.block.rawlines.push(m.doc);
       },
       else: function (m) {
-        if (!ctx.block.location.code.start) {
-          if (line.trim() === '') return;
+        if (!ctx.block.prelude) {
+          line = line.trim();
+          if (line === '') return;
+          ctx.block.prelude = line;
           ctx.block.location.code.start = i + 1;
         }
       }

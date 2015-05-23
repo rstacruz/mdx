@@ -1,9 +1,8 @@
 var push = require('./helpers/push');
 
-var e, out;
-
-
 describe('mdx', function() {
+  afterEach('print', function () { console.log(require('util').inspect(this.out, { depth: null })); });
+
   push('file.js',
 `/*
  * Description here.
@@ -17,6 +16,10 @@ describe('mdx', function() {
     expect(this.out[0].location.code).eql({ start: 5 });
   });
     
+  it('has prelude', function () {
+    expect(this.out[0].prelude).eql("function hello() {");
+  });
+
   it('has raw', function () {
     expect(this.out[0].raw).eql("Description here.\n");
   });
@@ -48,6 +51,14 @@ describe('multiple blocks', function() {
     expect(this.out[1].location.code).eql({ start: 12 });
   });
     
+  it('has prelude[0]', function () {
+    expect(this.out[0].prelude).eql("function hello() {");
+  });
+
+  it('has prelude[1]', function () {
+    expect(this.out[1].prelude).eql("function world() {");
+  });
+
   it('has raw', function () {
     expect(this.out[0].raw).eql("Description here.\n");
   });
