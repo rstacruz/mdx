@@ -98,4 +98,76 @@ function () {
     expect(this.out).eql([]);
   });
 });
+
+parsingTest(
+'titles.js',
+`/*
+ * Mdx:
+ * This is a class.
+ */
+Foo.registerClass('Mdx', function() {});
+`,
+function() {
+  it('has title', function () {
+    expect(this.out[0].title).eql('Mdx');
+ });
+
+ it('parses them out of the raw data', function () {
+    expect(this.out[0].raw).eql('This is a class.\n');
+  });
+});
+
+parsingTest(
+'titles tags and types.js',
+`/*
+ * Mdx:
+ * Class: (Private) This is a class.
+ */
+Foo.registerClass('Mdx', function() {});
+`,
+function() {
+  it('has title', function () {
+    expect(this.out[0].title).eql('Mdx');
+    expect(this.out[0].type).eql('class');
+    expect(this.out[0].tags).eql(['private']);
+ });
+
+ it('parses them out of the raw data', function () {
+    expect(this.out[0].raw).eql('This is a class.\n');
+  });
+});
+
+parsingTest(
+'titles and tags.js',
+`/*
+ * Mdx:
+ * (Private) This is a class.
+ */
+Foo.registerClass('Mdx', function() {});
+`,
+function() {
+  it('has title', function () {
+    expect(this.out[0].title).eql('Mdx');
+    expect(this.out[0].tags).eql(['private']);
+ });
+
+ it('parses them out of the raw data', function () {
+    expect(this.out[0].raw).eql('This is a class.\n');
+  });
+});
+
+parsingTest(
+'titles and multiple tags.js',
+`/*
+ * Mdx:
+ * (Private) (Deprecated) This is a class.
+ */
+Foo.registerClass('Mdx', function() {});
+`,
+function() {
+  it('has title', function () {
+    expect(this.out[0].title).eql('Mdx');
+    expect(this.out[0].tags).eql(['private', 'deprecated']);
+ });
+});
 });
