@@ -8,7 +8,7 @@ describe('Language:', function () {
     });
 
     it('works for .es6', function () {
-      var lang = Mdx.detectLanguage('file.es6');
+      var lang = Mdx.detectLanguage('filen.es6');
       expect(lang.name).eq('javascript');
     });
 
