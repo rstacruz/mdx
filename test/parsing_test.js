@@ -1,3 +1,4 @@
+describe("Parsing:", function () {
 parsingTest(
 'basic parsing.js',
 `/*
@@ -76,7 +77,8 @@ function () {
 });
 
 
-parsingTest('explicit flag.js',
+parsingTest(
+'explicit flag.js',
 `/**
  * Description here.
  */
@@ -85,4 +87,15 @@ function () {
   it('sets the explicit flag', function () {
     expect(this.out[0].explicit).eql(true);
   });
+});
+
+parsingTest(
+'short blocks.js',
+`/* jshint: true */
+function hello() {}`,
+function () {
+  it('is empty', function () {
+    expect(this.out).eql([]);
+  });
+});
 });
