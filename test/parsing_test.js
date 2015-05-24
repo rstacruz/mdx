@@ -121,7 +121,7 @@ parsingTest(
 'titles tags and types.js',
 `/*
  * Mdx:
- * Class: (Private) This is a class.
+ * Private: (Class) This is a class.
  */
 Foo.registerClass('Mdx', function() {});
 `,
@@ -141,7 +141,7 @@ parsingTest(
 'titles and tags.js',
 `/*
  * Mdx:
- * (Private) This is a class.
+ * Private: This is a class.
  */
 Foo.registerClass('Mdx', function() {});
 `,
@@ -160,7 +160,7 @@ parsingTest(
 'titles and multiple tags.js',
 `/*
  * Mdx:
- * (Private) (Deprecated) This is a class.
+ * Private, deprecated: This is a class.
  */
 Foo.registerClass('Mdx', function() {});
 `,
