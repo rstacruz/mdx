@@ -105,8 +105,7 @@ parsingTest(
  * Mdx:
  * This is a class.
  */
-Foo.registerClass('Mdx', function() {});
-`,
+Foo.registerClass('Mdx', function() {});`,
 function() {
   it('has title', function () {
     expect(this.out[0].title).eql('Mdx');
@@ -123,8 +122,7 @@ parsingTest(
  * Mdx:
  * Private: (Class) This is a class.
  */
-Foo.registerClass('Mdx', function() {});
-`,
+Foo.registerClass('Mdx', function() {});`,
 function() {
   it('has title', function () {
     expect(this.out[0].title).eql('Mdx');
@@ -143,8 +141,7 @@ parsingTest(
  * Mdx:
  * Private: This is a class.
  */
-Foo.registerClass('Mdx', function() {});
-`,
+Foo.registerClass('Mdx', function() {});`,
 function() {
   it('has title', function () {
     expect(this.out[0].title).eql('Mdx');
@@ -162,8 +159,7 @@ parsingTest(
  * Mdx:
  * Private, deprecated: This is a class.
  */
-Foo.registerClass('Mdx', function() {});
-`,
+Foo.registerClass('Mdx', function() {});`,
 function() {
   it('has title', function () {
     expect(this.out[0].title).eql('Mdx');
