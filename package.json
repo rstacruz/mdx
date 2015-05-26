@@ -9,6 +9,7 @@
   "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
   "license": "MIT",
   "dependencies": {
+    "marked": "^0.3.3",
     "object-assign": "^2.0.0",
     "read-input": "^0.3.0",
     "yargs": "^3.9.1"
