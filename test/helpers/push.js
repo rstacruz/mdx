@@ -5,5 +5,6 @@ module.exports = function push (file, input) {
     this.ex = new Extractor();
     this.ex.push(file, input);
     this.out = this.ex.toJson();
+    this.blocks = this.out.blocks;
   });
 };

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-var Extractor = require('../index').Extractor;
+var Mdx = require('../index');
+var Extractor = Mdx.Extractor;
 
 if (!process.parent) run();
 
@@ -21,10 +22,22 @@ function run() {
       ex.push(f.name, f.data);
     });
 
-    console.log(JSON.stringify(ex.toJson(), null, 2));
+    var output = { blocks: ex.toJson() };
+
+    if (argv.format === 'json') {
+      console.log(JSON.stringify(output, null, 2));
+
+    } else if (argv.format === 'markdown') {
+      output = Mdx.renderTemplate(output);
+      process.stdout.write(output);
+
+    } else {
+      console.error('unknown format: ' + argv.format);
+    }
 
   }).catch(function (err) {
-    throw err;
+    console.error(err.message);
+    process.exit(1);
   });
 }
 
@@ -43,7 +56,8 @@ function yargs() {
     .option('f', {
       alias: 'format',
       type: 'string',
-      describe: 'set output format {json,markdown}'
+      describe: 'set output format {json,markdown}',
+      default: 'json'
     })
 
     .example('$0 lib/*.js')

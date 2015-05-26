@@ -1,6 +1,6 @@
 "use strict";
 
-describe.only('md block', function () {
+describe.skip('md block', function () {
   let mdblock = require('../lib/md_block');
   let out;
 
@@ -59,7 +59,7 @@ it('lol', function () {
     "this is *code*:",
     "",
     "  a",
-    "    b",
+    "  b",
     "",
     "  c",
     "",
@@ -70,7 +70,6 @@ it('lol', function () {
   var Lexer = require('marked').Lexer;
   var assign = require('object-assign');
   var lexer = new Lexer({ gfm: true, tables: true, smartLists: true });
-  lexer.rules = assign({}, lexer.rules);
   lexer.rules.code = /^( {2}[^\n]+\n*)+/;
   let tokens = lexer.lex(inp);
   console.log(lexer.rules);

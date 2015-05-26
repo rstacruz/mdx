@@ -10,12 +10,15 @@
   "license": "MIT",
   "dependencies": {
     "marked": "^0.3.3",
+    "minstache": "^1.2.0",
+    "mustache": "^2.0.0",
     "object-assign": "^2.0.0",
     "read-input": "^0.3.0",
     "yargs": "^3.9.1"
   },
   "devDependencies": {
     "babelify": "^6.1.1",
+    "brfs": "^1.4.0",
     "browserify": "^10.2.1",
     "browserify-incremental": "^3.0.0",
     "chai": "^2.3.0",

@@ -8,11 +8,11 @@ function hello() {
 }`,
 function () {
   it('has type', function () {
-    expect(this.out[0].type).eql('function');
+    expect(this.blocks[0].type).eql('function');
   });
 
   it('has title', function () {
-    expect(this.out[0].title).eql('hello');
+    expect(this.blocks[0].title).eql('hello');
   });
 });
 
@@ -25,11 +25,11 @@ class Extract {
 }`,
 function() {
   it('has type', function () {
-    expect(this.out[0].type).eql('class');
+    expect(this.blocks[0].type).eql('class');
   });
 
   it('has title', function () {
-    expect(this.out[0].title).eql('Extract');
+    expect(this.blocks[0].title).eql('Extract');
   });
 });
 
@@ -42,11 +42,11 @@ class Extract extends Base {
 }`,
 function () {
   it('has type', function () {
-    expect(this.out[0].type).eql('class');
+    expect(this.blocks[0].type).eql('class');
   });
 
   it('has title', function () {
-    expect(this.out[0].title).eql('Extract');
+    expect(this.blocks[0].title).eql('Extract');
   });
 });
 });
