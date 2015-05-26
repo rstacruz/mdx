@@ -22,7 +22,7 @@ function run() {
       ex.push(f.name, f.data);
     });
 
-    var output = { blocks: ex.toJson() };
+    var output = ex.toJson();
 
     if (argv.format === 'json') {
       console.log(JSON.stringify(output, null, 2));

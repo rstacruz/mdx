@@ -1,52 +1,70 @@
 describe('Prelude parsing:', function () {
-parsingTest(
-'js functions.js',
-`/**
- * Description here.
- */
-function hello() {
-}`,
-function () {
-  it('has type', function () {
-    expect(this.blocks[0].type).eql('function');
-  });
+  preludeTest(
+    "functions.js",
+    "function hello() {",
+    function () {
+      expect(this.blocks[0].type).eql('function');
+      expect(this.blocks[0].title).eql('hello');
+    });
 
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('hello');
-  });
-});
+  preludeTest(
+    "classes.js",
+    "class Extract {",
+    function () {
+      expect(this.blocks[0].type).eql('class');
+      expect(this.blocks[0].title).eql('Extract');
+    });
 
-parsingTest(
-'classes.js',
-`/**
- * Description here.
- */
-class Extract {
-}`,
-function() {
-  it('has type', function () {
-    expect(this.blocks[0].type).eql('class');
-  });
+  preludeTest(
+    "subclasses.js",
+    "class Extract extends Base {",
+    function () {
+      expect(this.blocks[0].type).eql('class');
+      expect(this.blocks[0].title).eql('Extract');
+    });
 
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('Extract');
-  });
-});
+  preludeTest(
+    "method.js",
+    "Mdx.renderTemplate = function () {",
+    function () {
+      expect(this.blocks[0].type).eql('function');
+      expect(this.blocks[0].title).eql('renderTemplate');
+    });
 
-parsingTest(
-'subclasses.js',
-`/**
- * Description here.
- */
-class Extract extends Base {
-}`,
-function () {
-  it('has type', function () {
-    expect(this.blocks[0].type).eql('class');
-  });
+  preludeTest(
+    "prototype method.js",
+    "Mdx.prototype.renderTemplate = function () {",
+    function () {
+      expect(this.blocks[0].type).eql('function');
+      expect(this.blocks[0].title).eql('renderTemplate');
+    });
 
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('Extract');
-  });
-});
+  preludeTest(
+    "attribute.js",
+    "Mdx.radius = 32.5;",
+    function () {
+      expect(this.blocks[0].type).eql('attribute');
+      expect(this.blocks[0].title).eql('radius');
+    });
+
+  preludeTest(
+    "attribute 2.js",
+    "let radius = 32.5;",
+    function () {
+      expect(this.blocks[0].type).eql('variable');
+      expect(this.blocks[0].title).eql('radius');
+    });
+
+  function preludeTest(file, code, fn) {
+    var input = `/**\n * Description here\n */\n${code}`;
+
+    it(file, function () {
+      var Extractor = require('../index').Extractor;
+      this.ex = new Extractor();
+      this.ex.push(file, input);
+      this.out = this.ex.toJson();
+      this.blocks = this.out.blocks;
+      fn.apply(this);
+    });
+  }
 });
