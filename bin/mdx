@@ -10,7 +10,7 @@ if (!process.parent) run();
 
 function run() {
   var read = require('read-input');
-  var argv = require('yargs').argv;
+  var argv = yargs().argv;
   var ex = new Extractor();
 
   read(argv._).then(function (res) {
@@ -26,4 +26,27 @@ function run() {
   }).catch(function (err) {
     throw err;
   });
+}
+
+function yargs() {
+  return require('yargs')
+    .version(require('../package.json').version)
+    .alias('h', 'help')
+    .help('help')
+    .option('v', {
+      alias: 'version',
+      describe: 'Show version info'
+    })
+
+    .usage('Usage: $0 <files>')
+
+    .option('f', {
+      alias: 'format',
+      type: 'string',
+      describe: 'set output format {json,markdown}'
+    })
+
+    .example('$0 lib/*.js')
+    .showHelpOnFail(false, "Specify --help for available options")
+    .strict();
 }
