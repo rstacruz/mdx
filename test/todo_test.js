@@ -7,7 +7,8 @@ describe('to do list', function () {
   });
 
   describe('preludes', function () {
-    it('custom title formats');
+    it('custom title formats', done);
+    it('h2 support');
   });
 
   describe('markdown', function () {
