@@ -1,8 +1,5 @@
 {{#blocks}}
-{{#(type === 'class')}}
-class
-{{/(type === 'class')}}
-### {{#title}}{{{title}}}{{/title}}{{^title}}{{{prelude}}}{{/title}}
+{{_headerprefix}} {{#title}}{{{title}}}{{/title}}{{^title}}{{{prelude}}}{{/title}}
 
 {{#signature}}
 > `{{{signature}}}`
