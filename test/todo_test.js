@@ -17,7 +17,8 @@ describe('to do list', function () {
     it('2 spaces for code *');
     it('@tags for code');
     it('definition lists');
-    it('custom signatures');
+    it('headings'); // "example:"
+    it('custom signatures'); // "Signature: new MyClass(x)"
   });
 
   describe('templating', function () {

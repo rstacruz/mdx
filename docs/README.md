@@ -10,15 +10,17 @@ Generic documentation extractor.
 
 ```js
 /**
- * Defines a get property `prop` in the given `prototype` object.
+ * Find Records by a specific field name and value. This method
+ * will be available for each `field` defined on the record.
  *
- * Parameters:
+ * title - the title of the article
+ * options - (Object) a list of available options
  *
- * ~ proto: the prototype
- * ~ prop: the property
- * ~ fn: the function
+ * Example:
+ *   let a = new Article("New post")
  *
- * Returns nothing.
+ * Signature:
+ *   new Article(title)
  */
 
 function getter (proto, prop, fn) {
