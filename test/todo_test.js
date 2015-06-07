@@ -7,12 +7,12 @@ describe('to do list', function () {
 
   describe('preludes', function () {
     it('custom title formats', done);
-    it('custom signatures');
-    it('h2 support');
+    it('custom signatures', done);
+    it('h2 support', done);
   });
 
   describe('markdown', function () {
-    it('2 spaces for code');
+    it('2 spaces for code *');
     it('@tags for code');
     it('definition lists');
   });
