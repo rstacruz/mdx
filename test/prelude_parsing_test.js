@@ -4,17 +4,17 @@ describe('Prelude parsing:', function () {
     "function hello() {",
     function () {
       expect(this.blocks[0].type).eql('function');
-      expect(this.blocks[0].title).eql('hello');
+      expect(this.blocks[0].title).eql('hello()');
       expect(this.blocks[0].signature).eql('hello()');
     });
 
   preludeTest(
     "functions_with_args.js",
-    "function hello(name) {",
+    "function greet(name) {",
     function () {
       expect(this.blocks[0].type).eql('function');
-      expect(this.blocks[0].title).eql('hello');
-      expect(this.blocks[0].signature).eql('hello(name)');
+      expect(this.blocks[0].title).eql('greet()');
+      expect(this.blocks[0].signature).eql('greet(name)');
     });
 
   preludeTest(
@@ -35,10 +35,10 @@ describe('Prelude parsing:', function () {
 
   preludeTest(
     "method.js",
-    "Mdx.renderTemplate = function () {",
+    "Mdx.renderDocument = function () {",
     function () {
       expect(this.blocks[0].type).eql('function');
-      expect(this.blocks[0].title).eql('renderTemplate');
+      expect(this.blocks[0].title).eql('renderDocument()');
     });
 
   preludeTest(
@@ -46,7 +46,7 @@ describe('Prelude parsing:', function () {
     "Mdx.prototype.renderTemplate = function () {",
     function () {
       expect(this.blocks[0].type).eql('function');
-      expect(this.blocks[0].title).eql('renderTemplate');
+      expect(this.blocks[0].title).eql('renderTemplate()');
     });
 
   preludeTest(
