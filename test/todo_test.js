@@ -1,5 +1,4 @@
 describe('to do list', function () {
-  function done() {}
 
   describe('parsing', function () {
     it('single line mode (//)');
@@ -8,6 +7,7 @@ describe('to do list', function () {
 
   describe('preludes', function () {
     it('custom title formats', done);
+    it('custom signatures');
     it('h2 support');
   });
 
@@ -21,3 +21,5 @@ describe('to do list', function () {
     it('mustache', done);
   });
 });
+
+function done() {}
