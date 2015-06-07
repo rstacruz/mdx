@@ -12,9 +12,11 @@ describe('to do list', function () {
   });
 
   describe('markdown', function () {
+    // see md_block.js
     it('2 spaces for code *');
     it('@tags for code');
     it('definition lists');
+    it('custom signatures');
   });
 
   describe('templating', function () {
