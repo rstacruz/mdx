@@ -5,6 +5,16 @@ describe('Prelude parsing:', function () {
     function () {
       expect(this.blocks[0].type).eql('function');
       expect(this.blocks[0].title).eql('hello');
+      expect(this.blocks[0].signature).eql('hello()');
+    });
+
+  preludeTest(
+    "functions_with_args.js",
+    "function hello(name) {",
+    function () {
+      expect(this.blocks[0].type).eql('function');
+      expect(this.blocks[0].title).eql('hello');
+      expect(this.blocks[0].signature).eql('hello(name)');
     });
 
   preludeTest(
