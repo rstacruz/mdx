@@ -1,4 +1,7 @@
 {{#blocks}}
+{{#(type === 'class')}}
+class
+{{/(type === 'class')}}
 ### {{#title}}{{{title}}}{{/title}}{{^title}}{{{prelude}}}{{/title}}
 
 {{#signature}}
