@@ -9,6 +9,7 @@ describe('to do list', function () {
     it('custom title formats', done);
     it('custom signatures', done);
     it('h2 support', done);
+    it('alternate title format', done); // md_block (module):
   });
 
   describe('markdown', function () {

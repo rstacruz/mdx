@@ -55,7 +55,7 @@ def sum(&blk)
 ## Format
 
 ```
-# [TITLE:]
+# [TITLE [(TYPE):]
 # [TAG, TAGn:] [(TYPE)] [DESCRIPTION]
 # [BODY]
 ```

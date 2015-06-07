@@ -166,4 +166,18 @@ function() {
     expect(this.blocks[0].tags).eql(['private', 'deprecated']);
  });
 });
+
+parsingTest(
+'titles and inline type.js',
+`/*
+ * Mdx (module):
+ * This is a class.
+ */
+Foo.registerClass('Mdx', function() {});`,
+function() {
+  it('has title', function () {
+    expect(this.blocks[0].title).eql('Mdx');
+    expect(this.blocks[0].type).eql('module');
+ });
+});
 });
