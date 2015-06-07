@@ -2,7 +2,7 @@ describe('to do list', function () {
 
   describe('parsing', function () {
     it('single line mode (//)');
-    it('automatic title');
+    it('automatic title', done);
   });
 
   describe('preludes', function () {
