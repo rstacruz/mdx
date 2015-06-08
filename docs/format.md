@@ -6,21 +6,28 @@ Start comments with `/**` to begin a comment block. Things will be inferred base
 
 ```js
 /**
- * Clears the screen.
+ * Clears the screen after a specified `delay`.
  */
 
-function clear() {
+function clear(delay) {
 }
 ```
 
 This will be the output. Notice how the `title`, `type` and `signature` are all derived automatically.
 
-```yml
+```js
 title: "clear"
 type: "function"
-signature: "clear()"
-body: "Clears the screen."
+signature: "clear(delay)"
+body: "Clears the screen after a specified `delay`."
 ```
+
+In markdown output mode (`-f markdown`), it will appear like so:
+
+> ### clear
+> > `clear(delay)`
+>
+> Clears the screen after a specified `delay`.
 
 ### Titles
 
@@ -87,7 +94,7 @@ function fullName(first, last) {
 
 (TODO)
 
-```js
+```
 /**
  * Find Records by a specific field name and value. This method
  * will be available for each `field` defined on the record.
@@ -101,7 +108,7 @@ function fullName(first, last) {
 
 Indent them by 2 spaces. (TODO)
 
-```js
+```
 /**
  * Find Records by a specific field name and value.
  *
@@ -114,7 +121,7 @@ Indent them by 2 spaces. (TODO)
 
 (TODO)
 
-```js
+```
 /**
  * Find Records by a specific field name and value.
  *
@@ -130,7 +137,7 @@ Indent them by 2 spaces. (TODO)
 
 You may format the title line like so: (TODO)
 
-```js
+```
 /**
  * addClass : addClass(classname, ...)
  * Adds more classes.
@@ -139,7 +146,7 @@ You may format the title line like so: (TODO)
 
 Alternatively, you can define it like tomdoc: (TODO)
 
-```js
+```
 /**
  * Adds more classes.
  *
