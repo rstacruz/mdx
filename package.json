@@ -1,9 +1,11 @@
 {
-  "name": "mdextract2",
+  "name": "mdx",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "prepublish": "npm run build",
+    "build": "browserify -t babelify --node --bare --no-bundle-external -s App lib/index.js -o dist/index.js",
     "test": "mocha"
   },
   "author": "Rico Sta. Cruz <hi@ricostacruz.com>",
