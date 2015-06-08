@@ -3,6 +3,7 @@ describe('to do list', function () {
   describe('parsing', function () {
     it('single line mode (//)');
     it('automatic title', done);
+    it('inline signature'); // addPath : addPath(paths)
   });
 
   describe('preludes', function () {
