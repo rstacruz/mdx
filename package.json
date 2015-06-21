@@ -1,7 +1,7 @@
 {
   "name": "mdx",
   "version": "0.0.1",
-  "description": "",
+  "description": "Generic documentation extractor. Extensible enough to work with any language that supports comments.",
   "main": "index.js",
   "scripts": {
     "prepublish": "npm run build",
@@ -30,5 +30,17 @@
     "mocha-standard": "0.0.1",
     "nixt": "^0.4.1",
     "standard": "^4.3.1"
-  }
+  },
+  "directories": {
+    "doc": "docs",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rstacruz/mdx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rstacruz/mdx/issues"
+  },
+  "homepage": "https://github.com/rstacruz/mdx#readme"
 }
