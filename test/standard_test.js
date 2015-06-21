@@ -4,29 +4,44 @@
 const path = require('path')
 
 describe('standard', function () {
-  it('conforms to standard', function () {
-    let standard = './node_modules/.bin/standard'
-    let cwd = process.cwd()
-    let pkg = require(path.join(cwd, 'package.json'))
-    let params = pkg.standard && pkg.standard.params || []
+  it('style conforms to standard', function (done) {
+    const standard = require('standard')
+    const options = getOptions()
 
-    let proc = require('child_process').spawnSync(standard, ['-v'].concat(params))
-
-    if (proc.status !== 0) {
-      let err = new Error('Failed standard test\n')
-      err.message += replaceAll(proc.stdout.toString(), cwd, '')
-      err.message = err.message.replace(/\n/g, '\n    ')
-      err.stack = ''
-      throw err
-    }
+    standard.lintFiles(options.files || [], options, function (err, res) {
+      if (err) return done(err)
+      if (res.errorCount === 0 && res.warningCount === 0) return done()
+      done(errorify(res))
+    })
   })
 })
 
-function replaceAll (str, from, to) {
-  let re = new RegExp(escapeRegExp(from), 'g')
-  return str.replace(re, to)
+/*
+ * return custom `standard` options in package.json.
+ */
+
+function getOptions () {
+  const pkg = require(path.join(process.cwd(), 'package.json'))
+  const params = pkg.standard && pkg.standard || {}
+  return params
 }
 
-function escapeRegExp (string) {
-  return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, '\\$1')
+/*
+ * returns an Error object from a standard `results` object.
+ */
+
+function errorify (res) {
+  const cwd = process.cwd()
+  const err = new Error('Failed standard test')
+
+  res.results.forEach(function (result) {
+    result.messages.forEach(function (message) {
+      err.message += '\n      ' +
+        result.filePath.replace(cwd, '') +
+        ':' + message.line + ':' + message.column + ': ' +
+        message.message + ' (' + message.rule + ')'
+    })
+  })
+
+  return err
 }
