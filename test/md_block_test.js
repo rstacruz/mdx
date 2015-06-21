@@ -54,25 +54,61 @@ describe.skip('md block', function () {
     expect(out[0]).eql('this is code:')
     expect(out[1]).eql('```rb\na\nb\n\nc\n\nd\ne\n```')
   })
+})
+
+describe.skip('mit', function () {
+  const Mdit = require('markdown-it')
 
   it('lol', function () {
-    let inp = [
+    const inp = [
+      '* list',
+      '* item',
+      '  * sublist',
+      '',
+      'paragraph',
+      '',
       'this is *code*:',
       '',
-      '  a',
-      '  b',
-      '',
-      '  c',
-      '',
-      '  d',
-      '  e'
+      '    a',
+      '    b'
     ].join('\n')
 
-    let Lexer = require('marked').Lexer
-    let lexer = new Lexer({ gfm: true, tables: true, smartLists: true })
-    lexer.rules.code = /^( {2}[^\n]+\n*)+/
-    let tokens = lexer.lex(inp)
-    console.log(lexer.rules)
-    console.log(tokens)
+    const tokens = Mdit().parse(inp)
+
+    var out = []
+    var indent = ''
+    var prefix = ''
+    var nest = 0
+    tokens.forEach(function (token) {
+      if (~['bullet_list_open', 'bullet_list_close', 'blockquote_open', 'blockquote_close'].indexOf(token.type)) {
+        nest += token.nesting
+      }
+
+      indent = Array(nest).join('  ')
+      if (token.type === 'list_item_open') {
+        prefix = '- '
+      }
+
+      if (token.type === 'paragraph_close') {
+        out.push('')
+      }
+
+      if (token.type === 'inline') {
+        out.push(indent + prefix + token.content)
+        prefix = ''
+      }
+
+      delete token.attrs
+      delete token.map
+      delete token.hidden
+      delete token.markup
+      delete token.info
+      delete token.nesting
+      delete token.level
+      if (token.content === '') delete token.content
+      if (token.tag === '') delete token.tag
+      console.log(token)
+    })
+    console.log((out.join('\n')))
   })
 })

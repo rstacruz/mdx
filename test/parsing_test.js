@@ -181,4 +181,24 @@ describe('Parsing:', function () {
       expect(this.blocks[0].type).eql('module')
     })
   })
+
+  parsingTest(
+  'no prelude.js',
+  `/**
+   * Description here.
+   */
+
+  /**
+   * Another description.
+   */
+
+  function hello() {
+  }`,
+  function () {
+    it('has locations', function () {
+      expect(this.blocks[0].location.doc).eql({ start: 1, end: 3 })
+      expect(this.blocks[0].location.code).eql({ start: null })
+    })
+  })
+
 })
