@@ -1,10 +1,13 @@
-var Extractor = require('../../index').Extractor;
+/* global beforeEach */
+'use strict'
+
+var Extractor = require('../../index').Extractor
 
 module.exports = function push (file, input) {
   beforeEach(function () {
-    this.ex = new Extractor();
-    this.ex.push(file, input);
-    this.out = this.ex.toJson();
-    this.blocks = this.out.blocks;
-  });
-};
+    this.ex = new Extractor()
+    this.ex.push(file, input)
+    this.out = this.ex.toJson()
+    this.blocks = this.out.blocks
+  })
+}

@@ -16,10 +16,12 @@ function clear(delay) {
 This will be the output. Notice how the `title`, `type` and `signature` are all derived automatically.
 
 ```js
-title: "clear"
-type: "function"
-signature: "clear(delay)"
-body: "Clears the screen after a specified `delay`."
+{ blocks: [
+  { title: "clear",
+    type: "function",
+    signature: "clear(delay)",
+    body: "Clears the screen after a specified `delay`.",
+    ... } ] }
 ```
 
 In markdown output mode (`-f markdown`), it will appear like so:
@@ -67,7 +69,7 @@ const PI = 3.14159;
 
 ### Tags
 
-Tags begin with `word:`. This convention is taken from tomdoc.
+Tags begin with `word:`. This convention is taken from [tomdoc].
 
 ```js
 /**
@@ -94,11 +96,8 @@ function fullName(first, last) {
 
 (TODO)
 
-```
-/**
- * Find Records by a specific field name and value. This method
- * will be available for each `field` defined on the record.
- *
+```js
+/* ...
  * title - the title of the article
  * options - (Object) a list of available options
  */
@@ -108,7 +107,7 @@ function fullName(first, last) {
 
 Indent them by 2 spaces. (TODO)
 
-```
+```js
 /**
  * Find Records by a specific field name and value.
  *
@@ -121,7 +120,7 @@ Indent them by 2 spaces. (TODO)
 
 (TODO)
 
-```
+```js
 /**
  * Find Records by a specific field name and value.
  *
@@ -137,7 +136,7 @@ Indent them by 2 spaces. (TODO)
 
 You may format the title line like so: (TODO)
 
-```
+```js
 /**
  * addClass : addClass(classname, ...)
  * Adds more classes.
@@ -146,7 +145,7 @@ You may format the title line like so: (TODO)
 
 Alternatively, you can define it like tomdoc: (TODO)
 
-```
+```js
 /**
  * Adds more classes.
  *
@@ -155,3 +154,4 @@ Alternatively, you can define it like tomdoc: (TODO)
  */
 ```
 
+[tomdoc]: http://tomdoc.org/

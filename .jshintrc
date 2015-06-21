@@ -1,6 +1,7 @@
 {
   "esnext": true,
   "node": true,
+  "asi": true,
   "predef": [
     "describe",
     "it",

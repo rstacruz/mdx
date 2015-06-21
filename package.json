@@ -26,6 +26,7 @@
     "browserify": "^10.2.1",
     "browserify-incremental": "^3.0.0",
     "chai": "^2.3.0",
-    "mocha": "^2.2.5"
+    "mocha": "^2.2.5",
+    "nixt": "^0.4.1"
   }
 }

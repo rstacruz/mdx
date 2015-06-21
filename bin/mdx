@@ -1,47 +1,47 @@
 #!/usr/bin/env node
 
-var Mdx = require('../index');
-var Extractor = Mdx.Extractor;
+var Mdx = require('../index')
+var Extractor = Mdx.Extractor
 
-if (!process.parent) run();
+if (!process.parent) run()
 
 /**
  * Runs.
  */
 
-function run() {
-  var read = require('read-input');
-  var argv = yargs().argv;
-  var ex = new Extractor();
+function run () {
+  var read = require('read-input')
+  var argv = yargs().argv
+  var ex = new Extractor()
 
   read(argv._).then(function (res) {
     // non-fatal errors
-    if (res.error) console.warn(res.error.message);
-    
-    res.files.forEach(function (f) {
-      ex.push(f.name, f.data);
-    });
+    if (res.error) console.warn(res.error.message)
 
-    var output = ex.toJson();
+    res.files.forEach(function (f) {
+      ex.push(f.name, f.data)
+    })
+
+    var output = ex.toJson()
 
     if (argv.format === 'json') {
-      console.log(JSON.stringify(output, null, 2));
+      console.log(JSON.stringify(output, null, 2))
 
     } else if (argv.format === 'markdown') {
-      output = Mdx.renderTemplate(output);
-      process.stdout.write(output);
+      output = Mdx.renderTemplate(output)
+      process.stdout.write(output)
 
     } else {
-      console.error('unknown format: ' + argv.format);
+      console.error('unknown format: ' + argv.format)
     }
 
   }).catch(function (err) {
-    console.error(err.message);
-    process.exit(1);
-  });
+    console.error(err.stack)
+    process.exit(1)
+  })
 }
 
-function yargs() {
+function yargs () {
   return require('yargs')
     .version(require('../package.json').version)
     .alias('h', 'help')
@@ -61,6 +61,6 @@ function yargs() {
     })
 
     .example('$0 lib/*.js')
-    .showHelpOnFail(false, "Specify --help for available options")
-    .strict();
+    .showHelpOnFail(false, 'Specify --help for available options')
+    .strict()
 }

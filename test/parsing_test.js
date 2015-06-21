@@ -1,183 +1,184 @@
-describe("Parsing:", function () {
-parsingTest(
-'basic parsing.js',
-`/*
- * Description here.
- */
+/* global describe, parsingTest, it, expect */
 
-function hello() {
-}`,
-function() {
-  it('has locations', function () {
-    expect(this.blocks[0].location.doc).eql({ start: 1, end: 3 });
-    expect(this.blocks[0].location.code).eql({ start: 5 });
- });
-   
-  it('has prelude', function () {
-    expect(this.blocks[0].prelude).eql("function hello() {");
-  });
+describe('Parsing:', function () {
+  parsingTest(
+  'basic parsing.js',
+  `/*
+   * Description here.
+   */
 
-  it('has raw', function () {
-    expect(this.blocks[0].raw).eql("Description here.\n");
-  });
-});
+  function hello() {
+  }`,
+  function () {
+    it('has locations', function () {
+      expect(this.blocks[0].location.doc).eql({ start: 1, end: 3 })
+      expect(this.blocks[0].location.code).eql({ start: 5 })
+    })
 
-parsingTest(
-'multiple blocks.js',
-`/*
- * Description here.
- */
+    it('has prelude', function () {
+      expect(this.blocks[0].prelude).eql('function hello() {')
+    })
 
- function hello() {
- }
+    it('has raw', function () {
+      expect(this.blocks[0].raw).eql('Description here.\n')
+    })
+  })
 
-/*
- * Other description here.
- */
+  parsingTest(
+  'multiple blocks.js',
+  `/*
+   * Description here.
+   */
 
- function world() {
- }`,
-function () {
-  it('has locations [0]', function () {
-    expect(this.blocks[0].location.doc).eql({ start: 1, end: 3 });
-    expect(this.blocks[0].location.code).eql({ start: 5 });
-  });
+   function hello() {
+   }
 
-  it('has locations [1]', function () {
-    expect(this.blocks[1].location.doc).eql({ start: 8, end: 10 });
-    expect(this.blocks[1].location.code).eql({ start: 12 });
-  });
-    
-  it('has prelude[0]', function () {
-    expect(this.blocks[0].prelude).eql("function hello() {");
-  });
+  /*
+   * Other description here.
+   */
 
-  it('has prelude[1]', function () {
-    expect(this.blocks[1].prelude).eql("function world() {");
-  });
+   function world() {
+   }`,
+  function () {
+    it('has locations [0]', function () {
+      expect(this.blocks[0].location.doc).eql({ start: 1, end: 3 })
+      expect(this.blocks[0].location.code).eql({ start: 5 })
+    })
 
-  it('has raw', function () {
-    expect(this.blocks[0].raw).eql("Description here.\n");
-  });
-});
+    it('has locations [1]', function () {
+      expect(this.blocks[1].location.doc).eql({ start: 8, end: 10 })
+      expect(this.blocks[1].location.code).eql({ start: 12 })
+    })
 
-parsingTest(
-'stray closing tags.js',
-`/*
- * Description here.
- */
+    it('has prelude[0]', function () {
+      expect(this.blocks[0].prelude).eql('function hello() {')
+    })
 
- function hello() {
-       */ }`,
-function () {
-  it('has locations', function () {
-    expect(this.blocks[0].location.doc).eql({ start: 1, end: 3 });
-    expect(this.blocks[0].location.code).eql({ start: 5 });
-  });
-});
+    it('has prelude[1]', function () {
+      expect(this.blocks[1].prelude).eql('function world() {')
+    })
 
+    it('has raw', function () {
+      expect(this.blocks[0].raw).eql('Description here.\n')
+    })
+  })
 
-parsingTest(
-'explicit flag.js',
-`/**
- * Description here.
- */
-function hello() {}`,
-function () {
-  it('sets the explicit flag', function () {
-    expect(this.blocks[0].explicit).eql(true);
-  });
-});
+  parsingTest(
+  'stray closing tags.js',
+  `/*
+   * Description here.
+   */
 
-parsingTest(
-'short blocks.js',
-`/* jshint: true */
-function hello() {}`,
-function () {
-  it('is empty', function () {
-    expect(this.blocks).eql([]);
-  });
-});
+   function hello() {
+         */ }`,
+  function () {
+    it('has locations', function () {
+      expect(this.blocks[0].location.doc).eql({ start: 1, end: 3 })
+      expect(this.blocks[0].location.code).eql({ start: 5 })
+    })
+  })
 
-parsingTest(
-'titles.js',
-`/*
- * Mdx:
- * This is a class.
- */
-Foo.registerClass('Mdx', function() {});`,
-function() {
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('Mdx');
- });
+  parsingTest(
+  'explicit flag.js',
+  `/**
+   * Description here.
+   */
+  function hello() {}`,
+  function () {
+    it('sets the explicit flag', function () {
+      expect(this.blocks[0].explicit).eql(true)
+    })
+  })
 
- it('parses them out of the raw data', function () {
-    expect(this.blocks[0].raw).eql('This is a class.\n');
-  });
-});
+  parsingTest(
+  'short blocks.js',
+  `/* jshint: true */
+  function hello() {}`,
+  function () {
+    it('is empty', function () {
+      expect(this.blocks).eql([])
+    })
+  })
 
-parsingTest(
-'titles tags and types.js',
-`/*
- * Mdx:
- * Private: (Class) This is a class.
- */
-Foo.registerClass('Mdx', function() {});`,
-function() {
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('Mdx');
-    expect(this.blocks[0].type).eql('class');
-    expect(this.blocks[0].tags).eql(['private']);
- });
+  parsingTest(
+  'titles.js',
+  `/*
+   * Mdx:
+   * This is a class.
+   */
+  Foo.registerClass('Mdx', function() {});`,
+  function () {
+    it('has title', function () {
+      expect(this.blocks[0].title).eql('Mdx')
+    })
 
- it('parses them out of the raw data', function () {
-    expect(this.blocks[0].raw).eql('This is a class.\n');
-  });
-});
+    it('parses them out of the raw data', function () {
+      expect(this.blocks[0].raw).eql('This is a class.\n')
+    })
+  })
 
-parsingTest(
-'titles and tags.js',
-`/*
- * Mdx:
- * Private: This is a class.
- */
-Foo.registerClass('Mdx', function() {});`,
-function() {
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('Mdx');
-    expect(this.blocks[0].tags).eql(['private']);
- });
+  parsingTest(
+  'titles tags and types.js',
+  `/*
+   * Mdx:
+   * Private: (Class) This is a class.
+   */
+  Foo.registerClass('Mdx', function() {});`,
+  function () {
+    it('has title', function () {
+      expect(this.blocks[0].title).eql('Mdx')
+      expect(this.blocks[0].type).eql('class')
+      expect(this.blocks[0].tags).eql(['private'])
+    })
 
- it('parses them out of the raw data', function () {
-    expect(this.blocks[0].raw).eql('This is a class.\n');
-  });
-});
+    it('parses them out of the raw data', function () {
+      expect(this.blocks[0].raw).eql('This is a class.\n')
+    })
+  })
 
-parsingTest(
-'titles and multiple tags.js',
-`/*
- * Mdx:
- * Private, deprecated: This is a class.
- */
-Foo.registerClass('Mdx', function() {});`,
-function() {
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('Mdx');
-    expect(this.blocks[0].tags).eql(['private', 'deprecated']);
- });
-});
+  parsingTest(
+  'titles and tags.js',
+  `/*
+   * Mdx:
+   * Private: This is a class.
+   */
+  Foo.registerClass('Mdx', function() {});`,
+  function () {
+    it('has title', function () {
+      expect(this.blocks[0].title).eql('Mdx')
+      expect(this.blocks[0].tags).eql(['private'])
+    })
 
-parsingTest(
-'titles and inline type.js',
-`/*
- * Mdx (module):
- * This is a class.
- */
-Foo.registerClass('Mdx', function() {});`,
-function() {
-  it('has title', function () {
-    expect(this.blocks[0].title).eql('Mdx');
-    expect(this.blocks[0].type).eql('module');
- });
-});
-});
+    it('parses them out of the raw data', function () {
+      expect(this.blocks[0].raw).eql('This is a class.\n')
+    })
+  })
+
+  parsingTest(
+  'titles and multiple tags.js',
+  `/*
+   * Mdx:
+   * Private, deprecated: This is a class.
+   */
+  Foo.registerClass('Mdx', function() {});`,
+  function () {
+    it('has title', function () {
+      expect(this.blocks[0].title).eql('Mdx')
+      expect(this.blocks[0].tags).eql(['private', 'deprecated'])
+    })
+  })
+
+  parsingTest(
+  'titles and inline type.js',
+  `/*
+   * Mdx (module):
+   * This is a class.
+   */
+  Foo.registerClass('Mdx', function() {});`,
+  function () {
+    it('has title', function () {
+      expect(this.blocks[0].title).eql('Mdx')
+      expect(this.blocks[0].type).eql('module')
+    })
+  })
+})
