@@ -201,4 +201,20 @@ describe('Parsing:', function () {
     })
   })
 
+  parsingTest(
+  'basic parsing.js',
+  `/**
+   * on : on(x)
+   * Description here.
+   */
+
+  function hello() {
+  }`,
+  function () {
+    it('has raw', function () {
+      expect(this.blocks[0].signature).eql('on(x)')
+      expect(this.blocks[0].title).eql('on')
+      expect(this.blocks[0].raw).eql('Description here.\n')
+    })
+  })
 })
