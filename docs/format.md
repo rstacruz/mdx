@@ -44,6 +44,19 @@ Titles are automatically-inferred, but they can be explicitly stated by a first 
 module.exports = {
 ```
 
+### Title and signature
+
+To define a signature, use the format `<title> : <signature>` for the first line.
+
+```js
+/**
+ * on : on(event, handler)
+ * Binds an event.
+ */
+
+on () { ... }
+```
+
 ### Types
 
 Types are also automatically-inferred, but they can be explicitly stated by adding `(...)` before the title ends.
