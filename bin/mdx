@@ -12,7 +12,9 @@ if (!process.parent) run()
 function run () {
   var read = require('read-input')
   var argv = yargs().argv
-  var ex = new Extractor(argv)
+  var ex = new Extractor({
+    excludeTags: argv.excludeTag || []
+  })
 
   read(argv._).then(function (res) {
     // non-fatal errors
