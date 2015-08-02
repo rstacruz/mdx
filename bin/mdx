@@ -11,12 +11,7 @@ if (!process.parent) run()
 
 function run () {
   var read = require('read-input')
-  var argv = yargs()
-    .option('exclude-tag', {
-      type: 'array',
-      alias: 'x'
-    })
-    .argv
+  var argv = yargs().argv
   var ex = new Extractor(argv)
 
   read(argv._).then(function (res) {
@@ -58,11 +53,17 @@ function yargs () {
 
     .usage('Usage: $0 <files>')
 
-    .option('f', {
-      alias: 'format',
+    .option('format', {
+      alias: 'f',
       type: 'string',
       describe: 'set output format {json,markdown}',
       default: 'json'
+    })
+
+    .option('exclude-tag', {
+      type: 'array',
+      alias: 'x',
+      describe: 'tags to exclude'
     })
 
     .example('$0 lib/*.js')
