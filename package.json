@@ -1,7 +1,7 @@
 {
   "name": "mdx",
   "description": "Generic documentation extractor. Extensible enough to work with any language that supports comments.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "Rico Sta. Cruz <rico@ricostacruz.com>",
   "bin": {
     "mdx": "./bin/mdx"
