@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "mustache": "2.2.0",
-    "object-assign": "2.1.1",
+    "object-assign": "4.0.1",
     "read-input": "0.3.1",
     "yargs": "3.31.0"
   },
