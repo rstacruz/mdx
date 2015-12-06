@@ -1,10 +1,14 @@
 /* global describe, it, expect */
 'use strict'
 
+const r = require('./support/r')
+
 let splitBlocks = require('../lib/md_block').splitBlocks
 let normalizeCode = require('../lib/md_block').normalizeCode
 let normalize = require('../lib/md_block').normalize
 let out
+
+const ticks = '```'
 
 describe('md block: splitBlocks', function () {
   it('works', function () {
@@ -118,6 +122,7 @@ describe('md block: normalizeCode', function () {
       'hello there',
       ' world'
     ], { lang: 'js' })
+
     expect(out[0]).eql('hello there')
     expect(out[1]).eql(' world')
   })
@@ -125,26 +130,50 @@ describe('md block: normalizeCode', function () {
 
 describe('md block: normalize', function () {
   it('works', function () {
-    out = normalize([
-      'this is code:',
-      '',
-      '    a',
-      '    b',
-      '',
-      '    c',
-      '    d'
-    ].join('\n'))
+    out = normalize(r(`
+      this is code:
 
-    expect(out).eql([
-      'this is code:',
-      '',
-      '```js',
-      'a',
-      'b',
-      '',
-      'c',
-      'd',
-      '```'
-    ].join('\n'))
+          a
+          b
+
+          c
+          d
+    `), { lang: 'js' })
+
+    expect(out).eql(r(`
+      this is code:
+
+      ${ticks}js
+      a
+      b
+
+      c
+      d
+      ${ticks}
+    `))
+  })
+
+  it('works without language', function () {
+    out = normalize(r(`
+      this is code:
+
+          a
+          b
+
+          c
+          d
+    `))
+
+    expect(out).eql(r(`
+      this is code:
+
+      ${ticks}
+      a
+      b
+
+      c
+      d
+      ${ticks}
+    `))
   })
 })
