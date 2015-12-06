@@ -15,7 +15,6 @@ describe('Extractor:', function () {
     })
 
   function extractTest (file, input, options, fn) {
-
     it(file, function () {
       var Extractor = require('../index').Extractor
       this.ex = new Extractor(options)

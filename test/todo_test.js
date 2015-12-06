@@ -1,7 +1,6 @@
 /* global describe, it */
 
 describe('to do list', function () {
-
   describe('parsing', function () {
     it('single line mode (//)')
     it('automatic title', done)
