@@ -1,3 +1,8 @@
+## [v0.2.2]
+> Dec 6, 2015
+
+* Fix syntax higlhighting, really.
+
 ## [v0.2.1]
 > Dec 6, 2015
 
@@ -23,3 +28,4 @@
 [v0.1.1]: https://github.com/rstacruz/mdx/compare/v0.1.0...v0.1.1
 [v0.2.0]: https://github.com/rstacruz/mdx/compare/v0.1.1...v0.2.0
 [v0.2.1]: https://github.com/rstacruz/mdx/compare/v0.2.0...v0.2.1
+[v0.2.2]: https://github.com/rstacruz/mdx/compare/v0.2.1...v0.2.2
