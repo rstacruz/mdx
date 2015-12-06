@@ -16,7 +16,8 @@ describe('to do list', function () {
 
   describe('markdown', function () {
     // see md_block.js
-    it('2 spaces for code *')
+    it('2 spaces for code *', done)
+    it('syntax highlighting', done)
     it('@tags for code')
     it('definition lists')
     it('headings') // "example:"
