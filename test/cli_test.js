@@ -14,8 +14,9 @@ describe('cli', function () {
     cmd()
       .run('--help')
       .stdout(/Usage:/)
-      .stdout(/-v, --version/)
-      .stdout(/-f, --format/)
+      .stdout(/--version/)
+      .stdout(/--format/)
+      .stdout(/-f/)
       .end(done)
   })
 

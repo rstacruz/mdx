@@ -1,7 +1,7 @@
 /* global describe, it, expect */
 'use strict'
 
-describe.skip('md block', function () {
+describe('md block', function () {
   let mdblock = require('../lib/md_block')
   let out
 

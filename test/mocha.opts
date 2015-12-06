@@ -1,3 +1,2 @@
 --require test/setup.js
---harmony_classes
 --recursive
