@@ -10,11 +10,10 @@
     "url": "https://github.com/rstacruz/mdx/issues"
   },
   "dependencies": {
-    "marked": "^0.3.3",
-    "mustache": "^2.0.0",
-    "object-assign": "^2.0.0",
-    "read-input": "^0.3.0",
-    "yargs": "^3.9.1"
+    "mustache": "2.2.0",
+    "object-assign": "2.1.1",
+    "read-input": "0.3.1",
+    "yargs": "3.31.0"
   },
   "devDependencies": {
     "chai": "3.4.1",

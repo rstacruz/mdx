@@ -3,6 +3,7 @@
 
 let splitBlocks = require('../lib/md_block').splitBlocks
 let normalizeCode = require('../lib/md_block').normalizeCode
+let normalize = require('../lib/md_block').normalize
 let out
 
 describe('md block: splitBlocks', function () {
@@ -76,6 +77,24 @@ describe('md block: normalizeCode', function () {
     expect(out[1]).eql('```js\nworld\n```')
   })
 
+  it('works with 4 indents with line breaks', function () {
+    out = normalizeCode([
+      'hello there',
+      '    world\n    yes'
+    ], { lang: 'js' })
+    expect(out[0]).eql('hello there')
+    expect(out[1]).eql('```js\nworld\nyes\n```')
+  })
+
+  it('works with 4 indents with empty lines', function () {
+    out = normalizeCode([
+      'hello there',
+      '    world\n\n    yes'
+    ], { lang: 'js' })
+    expect(out[0]).eql('hello there')
+    expect(out[1]).eql('```js\nworld\n\nyes\n```')
+  })
+
   it('works with 6 indents', function () {
     out = normalizeCode([
       'hello there',
@@ -101,5 +120,31 @@ describe('md block: normalizeCode', function () {
     ], { lang: 'js' })
     expect(out[0]).eql('hello there')
     expect(out[1]).eql(' world')
+  })
+})
+
+describe('md block: normalize', function () {
+  it('works', function () {
+    out = normalize([
+      'this is code:',
+      '',
+      '    a',
+      '    b',
+      '',
+      '    c',
+      '    d'
+    ].join('\n'))
+
+    expect(out).eql([
+      'this is code:',
+      '',
+      '```js',
+      'a',
+      'b',
+      '',
+      'c',
+      'd',
+      '```'
+    ].join('\n'))
   })
 })
