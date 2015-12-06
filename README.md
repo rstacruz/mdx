@@ -7,3 +7,5 @@ Generic documentation extractor.
 * Prefers Markdown
 
 [![Status](https://travis-ci.org/rstacruz/mdx.svg?branch=master)](https://travis-ci.org/rstacruz/mdx "See test builds")
+
+Currently only supports JavaScript, more languages to come later.
