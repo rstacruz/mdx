@@ -1,12 +1,13 @@
 /* global describe, it, expect */
 'use strict'
 
-describe('md block', function () {
-  let mdblock = require('../lib/md_block')
-  let out
+let splitBlocks = require('../lib/md_block').splitBlocks
+let normalizeCode = require('../lib/md_block').normalizeCode
+let out
 
+describe('md block: splitBlocks', function () {
   it('works', function () {
-    out = mdblock([
+    out = splitBlocks([
       'hello',
       '',
       'there',
@@ -20,7 +21,7 @@ describe('md block', function () {
   })
 
   it('consolidates code blocks', function () {
-    out = mdblock([
+    out = splitBlocks([
       'this is code:',
       '',
       '    a',
@@ -36,7 +37,7 @@ describe('md block', function () {
   })
 
   it('consolidates code fences', function () {
-    out = mdblock([
+    out = splitBlocks([
       'this is code:',
       '',
       '```rb',
@@ -56,59 +57,49 @@ describe('md block', function () {
   })
 })
 
-describe.skip('mit', function () {
-  const Mdit = require('markdown-it')
+describe('md block: normalizeCode', function () {
+  it('works with 2 indents', function () {
+    out = normalizeCode([
+      'hello there',
+      '  world'
+    ], { lang: 'js' })
+    expect(out[0]).eql('hello there')
+    expect(out[1]).eql('```js\nworld\n```')
+  })
 
-  it('lol', function () {
-    const inp = [
-      '* list',
-      '* item',
-      '  * sublist',
-      '',
-      'paragraph',
-      '',
-      'this is *code*:',
-      '',
-      '    a',
-      '    b'
-    ].join('\n')
+  it('works with 4 indents', function () {
+    out = normalizeCode([
+      'hello there',
+      '    world'
+    ], { lang: 'js' })
+    expect(out[0]).eql('hello there')
+    expect(out[1]).eql('```js\nworld\n```')
+  })
 
-    const tokens = Mdit().parse(inp)
+  it('works with 6 indents', function () {
+    out = normalizeCode([
+      'hello there',
+      '      world'
+    ], { lang: 'js' })
+    expect(out[0]).eql('hello there')
+    expect(out[1]).eql('```js\n  world\n```')
+  })
 
-    var out = []
-    var indent = ''
-    var prefix = ''
-    var nest = 0
-    tokens.forEach(function (token) {
-      if (~['bullet_list_open', 'bullet_list_close', 'blockquote_open', 'blockquote_close'].indexOf(token.type)) {
-        nest += token.nesting
-      }
+  it('works with 3 indents', function () {
+    out = normalizeCode([
+      'hello there',
+      '   world'
+    ], { lang: 'js' })
+    expect(out[0]).eql('hello there')
+    expect(out[1]).eql('```js\nworld\n```')
+  })
 
-      indent = Array(nest).join('  ')
-      if (token.type === 'list_item_open') {
-        prefix = '- '
-      }
-
-      if (token.type === 'paragraph_close') {
-        out.push('')
-      }
-
-      if (token.type === 'inline') {
-        out.push(indent + prefix + token.content)
-        prefix = ''
-      }
-
-      delete token.attrs
-      delete token.map
-      delete token.hidden
-      delete token.markup
-      delete token.info
-      delete token.nesting
-      delete token.level
-      if (token.content === '') delete token.content
-      if (token.tag === '') delete token.tag
-      console.log(token)
-    })
-    console.log((out.join('\n')))
+  it('doesnt with 1 indent', function () {
+    out = normalizeCode([
+      'hello there',
+      ' world'
+    ], { lang: 'js' })
+    expect(out[0]).eql('hello there')
+    expect(out[1]).eql(' world')
   })
 })
