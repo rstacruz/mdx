@@ -167,4 +167,16 @@ Alternatively, you can define it like tomdoc: (TODO)
  */
 ```
 
+## Format
+
+```
+# [TITLE [(TYPE):]
+# [TAG, TAGn:] [(TYPE)] [DESCRIPTION]
+# [BODY]
+```
+
+* Title is inferred if not available
+* A block is only recognized if it has a type, tag, or title
+* ...or if it has an extra `*` or `#` in the beginning of the comment block
+
 [tomdoc]: http://tomdoc.org/

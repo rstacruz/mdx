@@ -1,7 +1,11 @@
+## [v0.2.0]
+> Dec 6, 2015
+
+* Add a `markdown` field to blocks.
+* Changes code blocks into code fences.
+
 ## [v0.1.1]
 > Aug  3, 2015
-
-[v0.1.1]: https://github.com/rstacruz/mdx/compare/v0.1.0...v0.1.1
 
 * Implement `--exclude-tag` to filter certain tags from the output.
 
@@ -9,3 +13,6 @@
 > Aug  3, 2015
 
 * Initial version.
+
+[v0.1.1]: https://github.com/rstacruz/mdx/compare/v0.1.0...v0.1.1
+[v0.2.0]: https://github.com/rstacruz/mdx/compare/v0.1.1...v0.2.0
