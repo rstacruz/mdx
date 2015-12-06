@@ -1,7 +1,10 @@
-# mdx
+# Table of contents
 
-Generic documentation extractor.
+* [mdx](../README.md)
+* Guide
+  * [Examples](examples.md)
+  * [Format](format.md)
+  * [Preludes](preludes.md)
+* Recipes
+  * [Updating readme](updating-readme.md)
 
-* Should extensible to work with any language that supports comments
-* Outputs documentation in YAML/JSON format, ready for say, Jekyll
-* Prefers Markdown

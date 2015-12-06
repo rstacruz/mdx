@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=b42a3c4d">
+    <link rel="stylesheet" href="http://ricostacruz.com/docpress-rsc/style.css">
+    <script src="assets/script.js?t=2bcc4b59"></script>
+    <title>Format</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="body page-format">
+        <div class="header-nav">
+          <div class="right">
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="format">Format</h1>
+<h3 id="documentation-comments">Documentation comments</h3>
+<p>Start comments with <code>/**</code> to begin a comment block. Things will be inferred based on the next line.</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Clears the screen after a specified `delay`.
+ */</span>
+
+<span class="hljs-function"><span class="pl-k">function</span> <span class="pl-ent">clear</span>(<span class="hljs-params">delay</span>) </span>{
+}
+</code></pre>
+<p>This will be the output. Notice how the <code>title</code>, <code>type</code> and <code>signature</code> are all derived automatically.</p>
+<pre><code class="lang-js">{ blocks: [
+  { title: <span class="pl-s">&quot;clear&quot;</span>,
+    type: <span class="pl-s">&quot;function&quot;</span>,
+    signature: <span class="pl-s">&quot;clear(delay)&quot;</span>,
+    body: <span class="pl-s">&quot;Clears the screen after a specified `delay`.&quot;</span>,
+    ... } ] }
+</code></pre>
+<p>In markdown output mode (<code>-f markdown</code>), it will appear like so:</p>
+<blockquote>
+<h3 id="clear">clear</h3>
+<blockquote>
+<p><code>clear(delay)</code></p>
+</blockquote>
+<p>Clears the screen after a specified <code>delay</code>.</p>
+</blockquote>
+<h3 id="titles">Titles</h3>
+<p>Titles are automatically-inferred, but they can be explicitly stated by a first line that ends in <code>:</code>.</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Mdx:
+ * Generic documentation extractor.
+ */</span>
+
+<span class="pl-c1">module</span>.exports = {
+</code></pre>
+<h3 id="title-and-signature">Title and signature</h3>
+<p>To define a signature, use the format <code>&lt;title&gt; : &lt;signature&gt;</code> for the first line.</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * on : on(event, handler)
+ * Binds an event.
+ */</span>
+
+on () { ... }
+</code></pre>
+<h3 id="types">Types</h3>
+<p>Types are also automatically-inferred, but they can be explicitly stated by adding <code>(...)</code> before the title ends.</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Mdx (module):
+ * Generic documentation extractor.
+ */</span>
+
+<span class="pl-c1">module</span>.exports = {
+</code></pre>
+<p>If you don&apos;t have a title, you can begin the first line with <code>(...)</code>:</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * (attribute) The ratio between the circumference and diameter.
+ */</span>
+
+<span class="pl-k">const</span> PI = <span class="hljs-number">3.14159</span>;
+</code></pre>
+<h3 id="tags">Tags</h3>
+<p>Tags begin with <code>word:</code>. This convention is taken from <a href="http://tomdoc.org/">tomdoc</a>.</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Internal: returns the full name.
+ */</span>
+
+<span class="hljs-function"><span class="pl-k">function</span> <span class="pl-ent">fullName</span>(<span class="hljs-params">first, last</span>) </span>{
+}
+</code></pre>
+<p>They can be used in conjunction with titles, just place the tag in the second line.</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * fullName:
+ * Internal: returns the full name.
+ */</span>
+
+<span class="hljs-function"><span class="pl-k">function</span> <span class="pl-ent">fullName</span>(<span class="hljs-params">first, last</span>) </span>{
+}
+</code></pre>
+<h3 id="parameters">Parameters</h3>
+<p>(TODO)</p>
+<pre><code class="lang-js"><span class="pl-c">/* ...
+ * title - the title of the article
+ * options - (Object) a list of available options
+ */</span>
+</code></pre>
+<h3 id="code-blocks">Code blocks</h3>
+<p>Indent them by 2 spaces. (TODO)</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Find Records by a specific field name and value.
+ *
+ *   let r = Record.find(name)
+ *   //=&gt; { ... }
+ */</span>
+</code></pre>
+<h3 id="subheadings">Subheadings</h3>
+<p>(TODO)</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Find Records by a specific field name and value.
+ *
+ * Caveats:
+ * This is not available in Win32 environments.
+ *
+ * See also:
+ * - [where]
+ */</span>
+</code></pre>
+<h3 id="custom-signatures">Custom signatures</h3>
+<p>You may format the title line like so: (TODO)</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * addClass : addClass(classname, ...)
+ * Adds more classes.
+ */</span>
+</code></pre>
+<p>Alternatively, you can define it like tomdoc: (TODO)</p>
+<pre><code class="lang-js"><span class="pl-c">/**
+ * Adds more classes.
+ *
+ * Signature:
+ *   addClass(classname, ...)
+ */</span>
+</code></pre>
+<h2 id="format">Format</h2>
+<pre><code># [TITLE [(TYPE):]
+# [TAG, TAGn:] [(TYPE)] [DESCRIPTION]
+# [BODY]
+</code></pre>
+<ul>
+<li>Title is inferred if not available</li>
+<li>A block is only recognized if it has a type, tag, or title</li>
+<li>...or if it has an extra <code>*</code> or <code>#</code> in the beginning of the comment block</li>
+</ul>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="examples.html"><span class="title">Examples</span></a></div>
+          <div class="right"><a href="preludes.html"><span class="label">Next: </span><span class="title">Preludes</span></a></div>
+        </div>
+      </div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a href="index.html" class="link title  link-index">mdx</a>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Guide</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="examples.html" class="link title  link-examples">Examples</a>
+                </li>
+                <li class="menu-item -level-2"><a href="format.html" class="link title -active link-format">Format</a>
+                  <ul class="headings heading-list">
+                    <li class="heading-item -depth-3"><a href="#documentation-comments" class="hlink link-documentation-comments">Documentation comments</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#clear" class="hlink link-clear">clear</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#titles" class="hlink link-titles">Titles</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#title-and-signature" class="hlink link-title-and-signature">Title and signature</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#types" class="hlink link-types">Types</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#tags" class="hlink link-tags">Tags</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#parameters" class="hlink link-parameters">Parameters</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#code-blocks" class="hlink link-code-blocks">Code blocks</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#subheadings" class="hlink link-subheadings">Subheadings</a>
+                    </li>
+                    <li class="heading-item -depth-3"><a href="#custom-signatures" class="hlink link-custom-signatures">Custom signatures</a>
+                    </li>
+                    <li class="heading-item -depth-2"><a href="#format" class="hlink link-format">Format</a>
+                    </li>
+                  </ul>
+                </li>
+                <li class="menu-item -level-2"><a href="preludes.html" class="link title  link-preludes">Preludes</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Recipes</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="updating-readme.html" class="link title  link-updating-readme">Updating readme</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </body>
+</html>

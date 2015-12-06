@@ -1,0 +1,195 @@
+{
+  "toc": {
+    "sections": [
+      {
+        "title": "mdx",
+        "source": "README.md",
+        "url": "index.html",
+        "slug": "index"
+      },
+      {
+        "title": "Guide",
+        "sections": [
+          {
+            "title": "Examples",
+            "source": "docs/examples.md",
+            "url": "examples.html",
+            "slug": "examples"
+          },
+          {
+            "title": "Format",
+            "source": "docs/format.md",
+            "url": "format.html",
+            "slug": "format",
+            "headings": [
+              {
+                "title": "Documentation comments",
+                "depth": 3,
+                "id": "documentation-comments"
+              },
+              {
+                "title": "clear",
+                "depth": 3,
+                "id": "clear"
+              },
+              {
+                "title": "Titles",
+                "depth": 3,
+                "id": "titles"
+              },
+              {
+                "title": "Title and signature",
+                "depth": 3,
+                "id": "title-and-signature"
+              },
+              {
+                "title": "Types",
+                "depth": 3,
+                "id": "types"
+              },
+              {
+                "title": "Tags",
+                "depth": 3,
+                "id": "tags"
+              },
+              {
+                "title": "Parameters",
+                "depth": 3,
+                "id": "parameters"
+              },
+              {
+                "title": "Code blocks",
+                "depth": 3,
+                "id": "code-blocks"
+              },
+              {
+                "title": "Subheadings",
+                "depth": 3,
+                "id": "subheadings"
+              },
+              {
+                "title": "Custom signatures",
+                "depth": 3,
+                "id": "custom-signatures"
+              },
+              {
+                "title": "Format",
+                "depth": 2,
+                "id": "format"
+              }
+            ]
+          },
+          {
+            "title": "Preludes",
+            "source": "docs/preludes.md",
+            "url": "preludes.html",
+            "slug": "preludes"
+          }
+        ]
+      },
+      {
+        "title": "Recipes",
+        "sections": [
+          {
+            "title": "Updating readme",
+            "source": "docs/updating-readme.md",
+            "url": "updating-readme.html",
+            "slug": "updating-readme"
+          }
+        ]
+      }
+    ]
+  },
+  "index": {
+    "index.html": {
+      "source": "README.md",
+      "title": "mdx",
+      "slug": "index"
+    },
+    "examples.html": {
+      "source": "docs/examples.md",
+      "title": "Examples",
+      "slug": "examples"
+    },
+    "format.html": {
+      "source": "docs/format.md",
+      "title": "Format",
+      "slug": "format",
+      "headings": [
+        {
+          "title": "Documentation comments",
+          "depth": 3,
+          "id": "documentation-comments"
+        },
+        {
+          "title": "clear",
+          "depth": 3,
+          "id": "clear"
+        },
+        {
+          "title": "Titles",
+          "depth": 3,
+          "id": "titles"
+        },
+        {
+          "title": "Title and signature",
+          "depth": 3,
+          "id": "title-and-signature"
+        },
+        {
+          "title": "Types",
+          "depth": 3,
+          "id": "types"
+        },
+        {
+          "title": "Tags",
+          "depth": 3,
+          "id": "tags"
+        },
+        {
+          "title": "Parameters",
+          "depth": 3,
+          "id": "parameters"
+        },
+        {
+          "title": "Code blocks",
+          "depth": 3,
+          "id": "code-blocks"
+        },
+        {
+          "title": "Subheadings",
+          "depth": 3,
+          "id": "subheadings"
+        },
+        {
+          "title": "Custom signatures",
+          "depth": 3,
+          "id": "custom-signatures"
+        },
+        {
+          "title": "Format",
+          "depth": 2,
+          "id": "format"
+        }
+      ]
+    },
+    "preludes.html": {
+      "source": "docs/preludes.md",
+      "title": "Preludes",
+      "slug": "preludes"
+    },
+    "updating-readme.html": {
+      "source": "docs/updating-readme.md",
+      "title": "Updating readme",
+      "slug": "updating-readme"
+    }
+  },
+  "sources": {
+    "README.md": "index.html",
+    "docs/examples.md": "examples.html",
+    "docs/format.md": "format.html",
+    "docs/preludes.md": "preludes.html",
+    "docs/updating-readme.md": "updating-readme.html",
+    "docs/docpress.json": "docpress.json"
+  }
+}

@@ -1,5 +1,7 @@
 # mdx
 
-Generic documentation extractor. Extensible enough to work with any language that supports comments.
+Generic documentation extractor.
 
-Here be dragons
+* Should extensible to work with any language that supports comments
+* Outputs documentation in JSON format
+* Prefers Markdown

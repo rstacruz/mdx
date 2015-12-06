@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="assets/style.css?t=b42a3c4d">
+    <link rel="stylesheet" href="http://ricostacruz.com/docpress-rsc/style.css">
+    <script src="assets/script.js?t=2bcc4b59"></script>
+    <title>Updating readme</title>
+    <meta name="viewport" content="width=device-width">
+  </head>
+  <body class="-menu-visible">
+    <div class="doc-layout">
+      <div class="toggle menu-toggle js-menu-toggle"></div>
+      <div class="body page-updating-readme">
+        <div class="header-nav">
+          <div class="right">
+          </div>
+        </div>
+        <div class="markdown-body"><h1 id="updating-readme">Updating readme</h1>
+<p>To update the README automatically, you can use a script. I prefer using GNU Make.</p>
+<h5 id="makefile">Makefile</h5>
+<pre><code class="lang-sh"><span class="pl-c"># Use mdx to update readme.md</span>
+update: README.md
+README.md: lib/index.js lib/tableize.js <span class="pl-c"># change this</span>
+	@( sed <span class="pl-s">&apos;/&lt;!--api--&gt;/q&apos;</span> <span class="hljs-variable">$@</span>; \
+		<span class="pl-c1">echo</span>; \
+		./node_modules/.bin/mdx $^ --format markdown; \
+		sed -n <span class="pl-s">&apos;/&lt;!--api:end--&gt;/,$$p&apos;</span> <span class="hljs-variable">$@</span> ) &gt; <span class="hljs-variable">$@_</span>
+	@mv <span class="hljs-variable">$@_</span> <span class="hljs-variable">$@</span>
+</code></pre>
+<p>You can then write your readme with <code>&lt;!--api--&gt;</code> and <code>&lt;!--api:end--&gt;</code> tags that will automatically be updated.</p>
+<pre><code class="lang-md"><span class="hljs-header"># package</span>
+This is my readme.
+
+<span class="hljs-header">## API</span>
+
+<span class="xml"><span class="pl-c">&lt;!--api--&gt;</span></span>
+
+...everything here will be programatically updated
+
+<span class="xml"><span class="pl-c">&lt;!--api:end--&gt;</span></span>
+</code></pre>
+<p>To run the update, use <code>make update</code>. This will be a noop if the input files have not been updated.</p>
+<pre><code class="lang-sh">make update
+</code></pre>
+<p>You can put this in your package&apos;s prepublish script.</p>
+<h5 id="package.json">package.json</h5>
+<pre><code class="lang-json">{
+  &quot;<span class="pl-e">scripts</span>&quot;: <span class="pl-s">{
+    &quot;<span class="pl-e">prepublish</span>&quot;: <span class="pl-s"><span class="pl-s">&quot;make update&quot;</span>
+  </span>}
+</span>}
+</code></pre>
+
+        </div>
+        <div class="footer-nav">
+          <div class="left"><a href="preludes.html"><span class="title">Preludes</span></a></div>
+        </div>
+      </div>
+      <div class="menu toc-menu">
+        <li class="menu-item -level-0 -parent">
+          <ul class="submenu">
+            <li class="menu-item -level-1"><a href="index.html" class="link title  link-index">mdx</a>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Guide</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="examples.html" class="link title  link-examples">Examples</a>
+                </li>
+                <li class="menu-item -level-2"><a href="format.html" class="link title  link-format">Format</a>
+                </li>
+                <li class="menu-item -level-2"><a href="preludes.html" class="link title  link-preludes">Preludes</a>
+                </li>
+              </ul>
+            </li>
+            <li class="menu-item -level-1 -parent"><span class="title">Recipes</span>
+              <ul class="submenu">
+                <li class="menu-item -level-2"><a href="updating-readme.html" class="link title -active link-updating-readme">Updating readme</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </div>
+    </div>
+  </body>
+</html>
