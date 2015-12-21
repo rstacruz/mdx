@@ -1,27 +1,28 @@
 /* global describe, expect, it */
+const r = require('./support/r')
 
 describe('Extractor:', function () {
   extractTest(
-    'private function.js',
-    `/**
+    'private function.js', r(`
+    /**
      * Private: this is a private function
      */
 
     function privy() {
-    }`,
+    }`),
     { excludeTags: ['private'] },
     function () {
       expect(this.blocks.length).eql(0)
     })
 
   extractTest(
-    'foo.js',
-    '/**\n' +
-    ' * Adds 2 numbers.\n' +
-    ' */\n' +
-    'function add(a, b) {\n' +
-    '  ...\n' +
-    '}',
+    'foo.js', r(`
+    /**
+     * Adds 2 numbers.
+     */
+    function add(a, b) {
+      ...
+    }`),
     {},
     function () { })
 

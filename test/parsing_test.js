@@ -1,4 +1,5 @@
 /* global describe, parsingTest, it, expect */
+const r = require('./support/r')
 
 describe('Parsing:', function () {
   parsingTest(
@@ -101,12 +102,12 @@ describe('Parsing:', function () {
   })
 
   parsingTest(
-  'titles.js',
-  `/*
+  'titles.js', r(`
+  /*
    * Mdx:
    * This is a class.
    */
-  Foo.registerClass('Mdx', function() {});`,
+  Foo.registerClass('Mdx', function() {});`),
   function () {
     it('has title', function () {
       expect(this.blocks[0].title).eql('Mdx')
@@ -202,7 +203,7 @@ describe('Parsing:', function () {
   })
 
   parsingTest(
-  'basic parsing.js',
+  'parsing with signature.js',
   `/**
    * on : on(x)
    * Description here.
