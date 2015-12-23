@@ -5,14 +5,13 @@ To update the README automatically, you can use a script. I prefer using GNU Mak
 ##### Makefile
 
 ```sh
+mdx = ./node_modules/.bin/mdx --markdown -x internal
+
 # Use mdx to update readme.md
 update: README.md
 README.md: lib/index.js lib/tableize.js # change this
-	@( sed '/<!--api-->/q' $@; \
-		echo; \
-		./node_modules/.bin/mdx $^ --format markdown; \
-		sed -n '/<!--api:end-->/,$$p' $@ ) > $@_
-	@mv $@_ $@
+	(sed '/<!--api-->/q' $@; echo; ${mdx} $^; sed -n '/<!--api:end-->/,$$p' $@) > $@~
+	mv $@~ $@
 ```
 
 You can then write your readme with `<!--api-->` and `<!--api:end-->` tags that will automatically be updated.
