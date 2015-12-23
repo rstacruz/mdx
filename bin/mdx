@@ -11,12 +11,13 @@ if (!process.parent) run()
 
 function run () {
   var read = require('read-input')
-  var argv = yargs().argv
+  var cli = getcli()
+
   var ex = new Extractor({
-    excludeTags: argv.excludeTag || []
+    excludeTags: cli.flags.excludeTag
   })
 
-  read(argv._).then(function (res) {
+  read(cli.input).then(function (res) {
     // non-fatal errors
     if (res.error) console.warn(res.error.message)
 
@@ -26,15 +27,15 @@ function run () {
 
     var output = ex.toJson()
 
-    if (argv.format === 'json') {
+    if (cli.flags.format === 'json') {
       console.log(JSON.stringify(output, null, 2))
 
-    } else if (argv.format === 'markdown') {
+    } else if (cli.flags.format === 'markdown') {
       output = Mdx.renderTemplate(output)
       process.stdout.write(output)
 
     } else {
-      console.error('unknown format: ' + argv.format)
+      console.error('unknown format: ' + cli.flags.format)
     }
 
   }).catch(function (err) {
@@ -43,32 +44,42 @@ function run () {
   })
 }
 
-function yargs () {
-  return require('yargs')
-    .version(require('../package.json').version)
-    .alias('h', 'help')
-    .help('help')
-    .option('v', {
-      alias: 'version',
-      describe: 'Show version info'
-    })
+function getcli () {
+  var cli = require('meow')(`
+    Usage: mdx [options] [files...]
 
-    .usage('Usage: $0 <files>')
+    Options:
+      -f, --format FMT        set output format {json, markdown}
+      -m, --markdown          short for --format=markdown
+          --json              short for --format=json
+      -x, --exclude-tag TAG   excludes certain tag (can be repeated)
 
-    .option('format', {
-      alias: 'f',
-      type: 'string',
-      describe: 'set output format {json,markdown}',
-      default: 'json'
-    })
+    Other options:
+      -h, --help              show usage information
+      -v, --version           print version info and exit
 
-    .option('exclude-tag', {
-      type: 'array',
-      alias: 'x',
-      describe: 'tags to exclude'
-    })
+    Examples:
+      mdx lib/*.js
+      cat lib/*.js | mdx -x internal -f markdown
+  `, {
+    alias: {
+      h: 'help', v: 'version', f: 'format', x: 'exclude-tag',
+      m: 'markdown'
+    },
+    boolean: ['markdown', 'json'],
+    string: ['exclude-tag', 'format'],
+    default: { format: 'json' },
+    '--': true
+  })
 
-    .example('$0 lib/*.js')
-    .showHelpOnFail(false, 'Specify --help for available options')
-    .strict()
+  if (cli.flags.markdown) cli.flags.format = 'markdown'
+  if (cli.flags.json) cli.flags.format = 'json'
+
+  if (!cli.flags.excludeTag) {
+    cli.flags.excludeTag = []
+  } else if (!Array.isArray(cli.flags.excludeTag)) {
+    cli.flags.excludeTag = [cli.flags.excludeTag]
+  }
+
+  return cli
 }
