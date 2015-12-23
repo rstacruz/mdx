@@ -1,3 +1,9 @@
+## [v0.3.0]
+> Dec 23, 2015
+
+* Fix invocation using `mdx -x tag file.js`.
+* Add `--json` and `-m`/`--markdown` shorthand.
+
 ## [v0.2.3]
 > Dec 22, 2015
 
