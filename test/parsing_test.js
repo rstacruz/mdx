@@ -233,6 +233,6 @@ describe('Parsing:', function () {
   function () {
     it('works', function () {
       expect(s(this.blocks[0].markdown)).eql(s('```js\na\n\nb\n```'))
-    });
+    })
   })
 })

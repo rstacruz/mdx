@@ -1,3 +1,8 @@
+## [v0.3.1]
+> Dec 23, 2015
+
+* Fix extra newlines in long code blocks.
+
 ## [v0.3.0]
 > Dec 23, 2015
 
@@ -41,3 +46,4 @@
 [v0.2.1]: https://github.com/rstacruz/mdx/compare/v0.2.0...v0.2.1
 [v0.2.2]: https://github.com/rstacruz/mdx/compare/v0.2.1...v0.2.2
 [v0.2.3]: https://github.com/rstacruz/mdx/compare/v0.2.2...v0.2.3
+[v0.3.1]: https://github.com/rstacruz/mdx/compare/v0.3.0...v0.3.1
