@@ -1,5 +1,6 @@
 /* global describe, parsingTest, it, expect */
 const r = require('./support/r')
+const s = JSON.stringify
 
 describe('Parsing:', function () {
   parsingTest(
@@ -218,5 +219,20 @@ describe('Parsing:', function () {
       expect(this.blocks[0].raw).eql('Description here.\n')
       expect(this.blocks[0].markdown).eql('Description here.')
     })
+  })
+
+  parsingTest(
+  'extra spaces.js', r(`
+  /**
+    *     a
+    *
+    *     b
+    */
+
+   function trigger (el, event) {`),
+  function () {
+    it('works', function () {
+      expect(s(this.blocks[0].markdown)).eql(s('```js\na\n\nb\n```'))
+    });
   })
 })
