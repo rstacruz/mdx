@@ -17,7 +17,7 @@
   },
   "devDependencies": {
     "chai": "4.0.0",
-    "markdown-it": "7.0.0",
+    "markdown-it": "7.0.1",
     "mocha": "3.4.2",
     "mocha-standard": "1.0.0",
     "nixt": "0.5.0",
