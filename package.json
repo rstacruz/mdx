@@ -22,7 +22,7 @@
     "mocha-standard": "1.0.0",
     "nixt": "0.5.0",
     "redent": "1.0.0",
-    "standard": "6.0.5"
+    "standard": "7.1.2"
   },
   "directories": {
     "doc": "docs",
