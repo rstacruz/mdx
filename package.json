@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "meow": "3.6.0",
-    "mustache": "2.2.1",
+    "mustache": "2.3.0",
     "object-assign": "4.0.1",
     "read-input": "0.3.1"
   },
