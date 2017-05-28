@@ -21,7 +21,7 @@
     "mocha": "3.4.2",
     "mocha-standard": "1.0.0",
     "nixt": "0.5.0",
-    "redent": "1.0.0",
+    "redent": "2.0.0",
     "standard": "6.0.5"
   },
   "directories": {
