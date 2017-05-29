@@ -1,5 +1,7 @@
 # mdx
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/rstacruz/mdx.svg)](https://greenkeeper.io/)
+
 Generic documentation extractor.
 
 * Should extensible to work with any language that supports comments
