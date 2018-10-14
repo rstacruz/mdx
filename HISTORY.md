@@ -1,3 +1,10 @@
+## [v0.3.2]
+> Oct 14, 2018
+
+- Republishing as `@rstacruz/mdx`, no functional changes.
+
+[v0.3.2]: https://github.com/rstacruz/mdx/compare/v0.3.1...v0.3.2
+
 ## [v0.3.1]
 > Dec 23, 2015
 
